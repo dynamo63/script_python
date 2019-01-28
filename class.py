@@ -71,10 +71,12 @@ class Dictionnary:
         #Pour parcourir la liste ,on renvoie un iterateur sur la liste des cles!!
         return iter(self.listKey)
     def items(self):
+        """Cette fonction renvoie une liste de cle-valeur de notre dictionnaire"""
         liste=list()
         for i in range(len(self)):
             liste.append((self._listKey[i],self._listValue[i]))
         return liste
     def __add__(self,newDic):
+        """Surcharge l'operateur +"""
         self._listKey.extend(newDic._listKey)
         self._listValue.extend(newDic._listValue)
