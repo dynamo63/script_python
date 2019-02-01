@@ -14,6 +14,8 @@ class MainWindow(QMainWindow):
 
     def __init__(self):
         super(MainWindow,self).__init__()
+        self.CentralWidget=QWidget(self)
+        self.setCentralWidget(self.CentralWidget)
         self.initUI()
 
     def initUI(self):
@@ -22,12 +24,24 @@ class MainWindow(QMainWindow):
         self.setWindowTitle("Ma fenetre Qt")
 
         #Nos widgets
-        message=QLabel("Hello World",self)
-        message.move(100,50)
-        self.bouton=QPushButton("Cliquez",self)
-        self.bouton.move(80,30)
-        self.bouton.clicked.connect(self.warning)
+        message=QLabel("Hello World",self.CentralWidget)
+        bouton=QPushButton("Cliquez",self.CentralWidget)
+        bouton.clicked.connect(self.warning)
 
+        #Positionnement....
+        h_box=QHBoxLayout()
+        h_box.addStretch()
+        h_box.addWidget(message)
+        h_box.addStretch()
+
+        v_box=QVBoxLayout()
+        v_box.addStretch()
+        v_box.addWidget(bouton)
+        v_box.addStretch()
+
+        v_box.addLayout(h_box)
+
+        self.CentralWidget.setLayout(v_box)
         #--------On cree un menu---------
         ObjectMain=self.menuBar()
 
